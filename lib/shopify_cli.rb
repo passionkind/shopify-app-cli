@@ -111,6 +111,7 @@ module ShopifyCli
 
   module Tasks
     register :Clone, :clone, 'shopify-cli/tasks/clone'
+    register :Deploy, :deploy, 'shopify-cli/tasks/deploy'
     register :JsDeps, :js_deps, 'shopify-cli/tasks/js_deps'
     register :Tunnel, :tunnel, 'shopify-cli/tasks/tunnel'
   end
