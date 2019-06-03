@@ -28,7 +28,7 @@ module ShopifyCli
       end
 
       def dir
-        File.join(ctx.root, name)
+        @dir ||= File.join(ctx.root, name)
       end
 
       def build
