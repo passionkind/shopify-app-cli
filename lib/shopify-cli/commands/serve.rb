@@ -6,9 +6,12 @@ module ShopifyCli
   module Commands
     class Serve < ShopifyCli::Command
       def call(*)
-        project = ShopifyCli::Project.current
-        app_type = ShopifyCli::AppTypeRegistry[project.config["app_type"].to_sym]
-        @ctx.exec(app_type.serve_command(@ctx))
+        tunnel = Tunnel.new
+        tunnel.call(['start'], nil)
+        @ctx.puts("Press {{command:ctrl-t}} to open your app in a new browser window")
+        # project = ShopifyCli::Project.current
+        # app_type = ShopifyCli::AppTypeRegistry[project.config["app_type"].to_sym]
+        # @ctx.exec(app_type.serve_command(@ctx))
       end
 
       def self.help
