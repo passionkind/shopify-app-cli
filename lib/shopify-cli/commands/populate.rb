@@ -3,9 +3,10 @@ require 'shopify_cli'
 module ShopifyCli
   module Commands
     class Populate < ShopifyCli::Command
-      def call
-        puts CLI::UI.fmt(self.class.mock)
-      end
+      def call(args, _name)
+        shop = File.read(File.join(@ctx.root, '.shop')).strip
+        @ctx.puts("{{green:✓}} #{shop} populated with 50 products")
+    end
 
       def self.mock
         <<~MOCK

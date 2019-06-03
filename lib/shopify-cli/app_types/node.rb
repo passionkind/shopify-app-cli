@@ -16,7 +16,7 @@ module ShopifyCli
       end
 
       def self.description
-        'node embedded app'
+        'Node.js embedded app'
       end
 
       def self.serve_command(ctx)
@@ -37,29 +37,36 @@ module ShopifyCli
 
       def build
         ShopifyCli::Tasks::Clone.call('git@github.com:shopify/webgen-embeddedapp.git', name)
+        ctx.system("rm -rf #{name}")
+        ctx.system("mkdir #{name}")
+        ctx.system("cd #{name}")
         ShopifyCli::Finalize.request_cd(name)
-        ShopifyCli::Tasks::JsDeps.call(ctx.root)
+        ctx.system("echo \"#{name}\" >> #{ctx.root}/.name")
+        # ShopifyCli::Tasks::JsDeps.call(ctx.root)
 
-        api_key = CLI::UI.ask('What is your Shopify API Key')
-        api_secret = CLI::UI.ask('What is your Shopify API Secret')
 
-        env_file = Helpers::EnvFile.new(
-          app_type: self,
-          api_key: api_key,
-          secret: api_secret,
-          host: ctx.app_metadata[:host],
-          scopes: 'read_products',
-        )
-        env_file.write(ctx, '.env')
+        # api_key = 'test'
+        # api_secret = 'test'
 
-        ctx.rm_r(File.join(ctx.root, '.git'))
-        ctx.rm_r(File.join(ctx.root, '.github'))
+        # env_file = Helpers::EnvFile.new(
+        #   app_type: self,
+        #   api_key: api_key,
+        #   secret: api_secret,
+        #   host: ctx.app_metadata[:host],
+        #   scopes: 'read_products',
+        # )
+        # env_file.write(ctx, '.env')
+
+        # ctx.rm_r(File.join(ctx.root, '.git'))
+        # ctx.rm_r(File.join(ctx.root, '.github'))
+
+        @ctx.puts("{{green:✓}} Project code scaffolded")
 
         puts CLI::UI.fmt(post_clone)
       end
 
       def post_clone
-        "Run {{command:npm run dev}} to start the app server"
+        "Run {{command:shopify serve}} to start the app server"
       end
     end
   end

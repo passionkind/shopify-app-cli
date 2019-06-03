@@ -5,7 +5,7 @@ module ShopifyCli
   module AppTypes
     class Rails < AppType
       def self.description
-        'rails embedded app'
+        'Ruby on Rails embedded app'
       end
 
       def self.serve_command(_ctx)
