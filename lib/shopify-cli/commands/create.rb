@@ -20,7 +20,7 @@ module ShopifyCli
         # return puts CLI::UI.fmt(self.class.help) unless @name
 
         if @thing == 'project' || @thing == 'app'
-          api_client = CLI::UI::Prompt.ask('Which Shopify app is this project for?') do |handler|
+          api_client = CLI::UI::Prompt.ask('Select an existing Shopify app from the Partner Dashboard or create a new one') do |handler|
             handler.option('Create a new Shopify app') { :new }
             handler.option('Vanessa’s Robot App') { nil }
             handler.option('Yard Sale') { nil }
