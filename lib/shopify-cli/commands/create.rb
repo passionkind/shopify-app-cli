@@ -40,7 +40,11 @@ module ShopifyCli
           @ctx.system("echo \"#{shop}\" >> #{@ctx.root}/.shop")
 
           @ctx.puts("{{green:✓}} New Shopify dev store “#{shop}” created")
-          @ctx.puts("{{green:✓}} App “#{app}” installed on #{shop}")
+          install = CLI::UI::Prompt.ask("Install #{app} on #{shop}") do |handler|
+            handler.option('Yes') { true }
+            handler.option('No') { false }
+          end
+          @ctx.puts("{{green:✓}} Installed #{app} on #{shop}") if install
         end
       end
 
