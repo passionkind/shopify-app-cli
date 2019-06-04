@@ -133,7 +133,8 @@ module CLI
           end
 
           raise(ArgumentError, 'insufficient options') if options.nil? || options.size < 2
-          instructions = (multiple ? "Toggle options. " : "") + "Choose with ↑ ↓ ⏎"
+          # instructions = (multiple ? "Toggle options. " : "") + "Choose with ↑ ↓ ⏎"
+          instructions = (multiple ? "Toggle options. " : "")
           puts_question("#{question} {{yellow:(#{instructions})}}")
           resp = interactive_prompt(options, multiple: multiple)
 

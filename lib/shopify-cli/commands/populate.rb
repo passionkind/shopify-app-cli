@@ -5,7 +5,7 @@ module ShopifyCli
     class Populate < ShopifyCli::Command
       def call(args, _name)
         shop = File.read(File.join(@ctx.root, '.shop')).strip
-        @ctx.puts("{{green:✓}} #{shop} populated with 50 products")
+        @ctx.puts("{{green:✓}} #{shop} populated with\n50 products")
     end
 
       def self.mock

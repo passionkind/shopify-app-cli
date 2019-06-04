@@ -20,7 +20,7 @@ module ShopifyCli
         # return puts CLI::UI.fmt(self.class.help) unless @name
 
         if @thing == 'project' || @thing == 'app'
-          api_client = CLI::UI::Prompt.ask('Select an existing Shopify app from the Partner Dashboard or create a new one') do |handler|
+          api_client = CLI::UI::Prompt.ask("Select an existing Shopify app from the\nPartner Dashboard or create a new one") do |handler|
             handler.option('Create a new Shopify app') { :new }
             handler.option('Vanessa’s Robot App') { nil }
             handler.option('Yard Sale') { nil }
@@ -39,12 +39,12 @@ module ShopifyCli
 
           @ctx.system("echo \"#{shop}\" >> #{@ctx.root}/.shop")
 
-          @ctx.puts("{{green:✓}} New Shopify dev store “#{shop}” created")
-          install = CLI::UI::Prompt.ask("Install #{app} on #{shop}") do |handler|
+          @ctx.puts("{{green:✓}} New Shopify dev store\n“#{shop}” created")
+          install = CLI::UI::Prompt.ask("Install #{app} on\n#{shop}") do |handler|
             handler.option('Yes') { true }
             handler.option('No') { false }
           end
-          @ctx.puts("{{green:✓}} Installed #{app} on #{shop}") if install
+          @ctx.puts("{{green:✓}} Installed #{app} on\n#{shop}") if install
         end
       end
 

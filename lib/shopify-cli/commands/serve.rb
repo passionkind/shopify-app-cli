@@ -8,7 +8,7 @@ module ShopifyCli
       def call(*)
         tunnel = Tunnel.new
         tunnel.call(['start'], nil)
-        @ctx.puts("Press {{command:ctrl-t}} to open your app in a new browser window")
+        @ctx.puts("Press {{command:ctrl-t}} to open your app in a new browser\nwindow")
         # project = ShopifyCli::Project.current
         # app_type = ShopifyCli::AppTypeRegistry[project.config["app_type"].to_sym]
         # @ctx.exec(app_type.serve_command(@ctx))
