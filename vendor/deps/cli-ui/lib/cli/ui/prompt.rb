@@ -139,9 +139,9 @@ module CLI
           resp = interactive_prompt(options, multiple: multiple)
 
           # Clear the line
-          print ANSI.previous_line + ANSI.clear_to_end_of_line
+          # print ANSI.previous_line + ANSI.clear_to_end_of_line
           # Force StdoutRouter to prefix
-          print ANSI.previous_line + "\n"
+          # print ANSI.previous_line + "\n"
 
           # reset the question to include the answer
           resp_text = resp
