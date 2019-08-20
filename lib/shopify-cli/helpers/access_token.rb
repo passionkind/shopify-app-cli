@@ -3,9 +3,10 @@ module ShopifyCli
     class AccessToken
       class << self
         def read(ctx)
-          Store.get(:admin_access_token) do
+          store = Store.new
+          store.get(:admin_access_token) do
             ShopifyCli::Tasks::AuthenticateShopify.call(ctx)
-            Store.get(:admin_access_token)
+            store.get(:admin_access_token)
           end
         end
       end
