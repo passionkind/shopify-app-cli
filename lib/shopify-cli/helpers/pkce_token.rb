@@ -3,10 +3,9 @@ module ShopifyCli
     class PkceToken
       class << self
         def read(ctx)
-          store = Store.new
-          store.get(:identity_exchange_token) do
+          Store.get(:identity_exchange_token) do
             ShopifyCli::Tasks::AuthenticateIdentity.call(ctx)
-            store.get(:identity_exchange_token)
+            Store.get(:identity_exchange_token)
           end
         end
       end

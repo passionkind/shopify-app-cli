@@ -5,6 +5,32 @@ module ShopifyCli
     class Store
       attr_reader :db
 
+      class << self
+        def keys
+          new.keys
+        end
+
+        def exists?(key)
+          new.exists?(key)
+        end
+
+        def set(**args)
+          new.set(**args)
+        end
+
+        def get(key, &block)
+          new.get(key, &block)
+        end
+
+        def del(*args)
+          new.del(*args)
+        end
+
+        def clear
+          new.clear
+        end
+      end
+
       def initialize(path: File.join(ShopifyCli::TEMP_DIR, ".db.pstore"))
         @db = PStore.new(path)
       end
