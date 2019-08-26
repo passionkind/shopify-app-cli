@@ -111,7 +111,9 @@ module ShopifyCli
 
     def receive_access_code
       @access_code ||= begin
-        query = @server_thread.join(120).value
+        server = @server_thread.join(60)
+        raise Error, 'Timed out while waiting for response from shopify' if server.nil?
+        query = server.value
         raise Error, query['error_description'] unless query['error'].nil?
         query['code']
       end
